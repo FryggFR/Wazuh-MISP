@@ -1,12 +1,23 @@
-# Wazuh-MISP
-A new version of the MISP integration that I've enhanced to have a more robust script and that supports sending logs from Stormshield.
+# MISP Integration
+A new version of the MISP integration that I've enhanced to have a more robust script and that supports sending logs from Stormshield Firewall.
+This script is not finished yet!
 
-This script is easy to modify.
-
-Work is in progress on this script. It's not finished yet!
-
-## Install :
-Add this config to your ossec.conf file (manager)
+# How to install 🛠️
+1. Copy the script in **/var/ossec/integrations**
+2. Configure the script line 57 and 58 with your misp instance and api key:
+```
+misp_base_url = "https://YOUR-MISP-INSTANCE/attributes/restSearch/"
+misp_api_auth_key = "YOUR-API-KEY"
+```
+3. Configure the acces
+```
+chmod 750 custom-misp.py
+```
+then
+```
+chown root:wazuh custom-misp.py
+```
+4. Add this block to ossec.conf
 ```
 <integration>
     <name>custom-misp.py</name>
@@ -14,3 +25,8 @@ Add this config to your ossec.conf file (manager)
     <alert_format>json</alert_format>
 </integration>
 ```
+5. Copy the file **misp.xml** in **/var/ossec/etc/rules**
+6. Restart wazuh-manager
+
+# Stormshield
+You can use [this](https://github.com/FryggFR/Wazuh-Stormshield/tree/master) ruleset and decoders with this script.
