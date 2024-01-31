@@ -207,11 +207,12 @@ elif event_source == 'stormshield':
             wazuh_event_param = alert["data"]["dst"]
         except IndexError:
             sys.exit()
-    elif event_type == 'fw-dns-event':
-        try:
-            wazuh_event_param = alert["data"]["dstname"]
-        except IndexError:
-            sys.exit()
+    # Keep the possibility to add another event type.
+    #elif event_type == 'fw-dns-event':
+    #    try:
+    #        wazuh_event_param = alert["data"]["dstname"]
+    #    except IndexError:
+    #        sys.exit()
 
     else:
         sys.exit()
