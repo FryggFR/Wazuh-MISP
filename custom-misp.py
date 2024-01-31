@@ -1,4 +1,5 @@
 #!/var/ossec/framework/python/bin/python3
+
 #
 # MISP Integration, work with Wazuh 4.7.2, MISP and Stormshield Firewall.
 # By Frygg
