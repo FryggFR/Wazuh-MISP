@@ -13,7 +13,6 @@ misp_api_auth_key = "YOUR-API-KEY"
 ```
 chmod 750 custom-misp.py
 ```
-then
 ```
 chown root:wazuh custom-misp.py
 ```
