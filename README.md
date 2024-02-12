@@ -1,5 +1,5 @@
 # MISP Integration
-A new version of the MISP integration that I've enhanced to have a more robust script and that supports sending logs from Stormshield Firewall.
+My version of the MISP integration that I've enhanced to have a more robust script and that supports sending logs from Stormshield Firewall.
 This script is not finished yet!
 
 # How to install 🛠️
