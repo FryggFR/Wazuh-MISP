@@ -17,9 +17,17 @@
   
   <rule id="100622" level="12">
     <field name="misp.category">\.+</field>
-    <description>MISP - IoC found in Threat Intel - Category: $(misp.category), Attribute: $(misp.value)</description>
+    <description>MISP - IoC found in Threat Intel - Category: $(misp.category), Attribute: $(misp.value), Requested by: $(agent.name)</description>
     <options>no_full_log</options>
     <group>misp_alert,</group>
   </rule>
-  
+
+  <!-- For this rule, you need to create a cdb list -->
+  <rule id="100623" level="3">
+    <if_sid>100622</if_sid>
+    <list field="misp.value">etc/lists/misp-whitelist</list>
+    <description>MISP - Attribute: $(misp.value) is in whitelist.</description>
+    <options>no_full_log</options>
+    <group>misp_alert,</group>
+  </rule>
 </group>
