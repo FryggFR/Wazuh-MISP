@@ -202,6 +202,8 @@ elif event_source == 'ossec':
             alert_output["misp"]["comment"] = misp_api_response["response"]["Attribute"][0]["comment"]
             send_event(alert_output, alert["agent"])
             
+# Stormshield events. 
+# need to add rule to the group "fw-pass-event"
 elif event_source == 'stormshield':
     if event_type == 'fw-pass-event':
         try:
