@@ -1,6 +1,8 @@
 # MISP Integration
 My version of the MISP integration that I've enhanced to have a more robust script and that supports sending logs from Stormshield Firewall.
-This script is not finished yet!
+
+**Warning**: The script is not finished yet, and may not work completely. 
+It sometimes generates errors on the MISP response and on some MISP requests.
 
 # How to install 🛠️
 1. Copy the script in **/var/ossec/integrations**
