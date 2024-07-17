@@ -32,3 +32,7 @@ chown root:wazuh custom-misp.py
 # Stormshield
 You can use [this](https://github.com/FryggFR/Wazuh-Stormshield/tree/master) ruleset and decoders with this script.
 The script will send a request to the MISP API with the destination ip.
+
+# Know issues & Work in progress...
+
+1) The script sends a duplicate alert to the Stormshield alerts, generating 2 lines in the Wazuh dashboard.
