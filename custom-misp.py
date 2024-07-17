@@ -57,8 +57,8 @@ except json.decoder.JSONDecodeError as e:
     sys.exit(1)
 
 # MISP API
-misp_base_url = "https://MISP-INSTANCE/attributes/restSearch/"
-misp_api_auth_key = "KEY"
+misp_base_url = "https://YOUR-MISP-INSTANCE/attributes/restSearch/"
+misp_api_auth_key = "YOUR-API-KEY"
 misp_apicall_headers = {"Content-Type": "application/json", "Authorization": f"{misp_api_auth_key}", "Accept": "application/json"}
 
 # Extracting data from Wazuh alerte.
