@@ -11,7 +11,7 @@ It sometimes generates errors on the MISP response and on some MISP requests.
 misp_base_url = "https://YOUR-MISP-INSTANCE/attributes/restSearch/"
 misp_api_auth_key = "YOUR-API-KEY"
 ```
-3. Configure the acces
+3. Configure the permissions
 ```
 chmod 750 custom-misp.py
 ```
@@ -26,7 +26,7 @@ chown root:wazuh custom-misp.py
     <alert_format>json</alert_format>
 </integration>
 ```
-5. Copy the file **misp.xml** in **/var/ossec/etc/rules**
+5. Copy the file **misp.xml** in **/var/ossec/etc/rules** and give him the right permissions.
 6. Restart wazuh-manager
 
 # Stormshield
