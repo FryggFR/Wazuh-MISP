@@ -25,7 +25,7 @@ regex_file_hash = re.compile('\w{64}')
 pwd = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 socket_addr = '{0}/queue/sockets/queue'.format(pwd)
 def send_event(msg, agent = None):
-    print(f"Result: {msg}")
+    #print(f"Result: {msg}")
     if not agent or agent["id"] == "000":
         string = '1:misp:{0}'.format(json.dumps(msg))
     else:
@@ -39,7 +39,7 @@ def send_event(msg, agent = None):
 try:
     alert_file_path = sys.argv[1]
 except IndexError:
-    print("Manual usage: python custom-misp.py <alert_file_path>")
+    #print("Manual usage: python custom-misp.py <alert_file_path>")
     sys.exit(1)
 
 try:
@@ -57,8 +57,8 @@ except json.decoder.JSONDecodeError as e:
     sys.exit(1)
 
 # MISP API
-misp_base_url = "https://YOUR-MISP-INSTANCE/attributes/restSearch/"
-misp_api_auth_key = "YOUR-API-KEY"
+misp_base_url = "https://192.168.13.15/attributes/restSearch/"
+misp_api_auth_key = "ivyAXIqrWJ0M28o6dkMwEFC91bUGYKgL3Psv06vv"
 misp_apicall_headers = {"Content-Type": "application/json", "Authorization": f"{misp_api_auth_key}", "Accept": "application/json"}
 
 # Extracting data from Wazuh alerte.
@@ -68,7 +68,7 @@ alert_output = {}
 
 # Source: windows
 if event_source == 'windows':
-    print("Source: Windows")
+    #print("Source: Windows")
     if event_type == 'sysmon_event1':
         try:
             wazuh_event_param = regex_file_hash.search(alert["data"]["win"]["eventdata"]["hashes"]).group(0)
@@ -125,7 +125,7 @@ if event_source == 'windows':
 
     misp_search_value = "value:"f"{wazuh_event_param}"
     misp_search_url = ''.join([misp_base_url, misp_search_value])
-    print("MISP URL:", misp_search_url)
+    #print("MISP URL:", misp_search_url)
 
     try:
         misp_api_response = requests.get(misp_search_url, headers=misp_apicall_headers, verify=False)
@@ -149,7 +149,7 @@ if event_source == 'windows':
 
 # Source: Linux
 elif event_source == 'linux':
-    print("Source: Linux")
+    #print("Source: Linux")
     if event_type == 'sysmon_event3' and alert["data"]["eventdata"]["destinationIsIpv6"] == 'false':
         try:
             dst_ip = alert["data"]["eventdata"]["DestinationIp"]
@@ -157,7 +157,7 @@ elif event_source == 'linux':
                 wazuh_event_param = dst_ip
                 misp_search_value = "value:"f"{wazuh_event_param}"
                 misp_search_url = ''.join([misp_base_url, misp_search_value])
-                print("MISP URL:", misp_search_url)
+                #print("MISP URL:", misp_search_url)
                 try:
                     misp_api_response = requests.get(misp_search_url, headers=misp_apicall_headers, verify=False)
                 except ConnectionError:
@@ -184,7 +184,7 @@ elif event_source == 'linux':
 
 # Source: ossec
 elif event_source == 'ossec':
-    print("Source: ossec")
+    #print("Source: ossec")
     if "sha256_after" in alert["syscheck"]:
         wazuh_event_param = alert["syscheck"]["sha256_after"]
     else:
@@ -192,7 +192,7 @@ elif event_source == 'ossec':
 
     misp_search_value = "value:"f"{wazuh_event_param}"
     misp_search_url = ''.join([misp_base_url, misp_search_value])
-    print("MISP URL:", misp_search_url)
+    #print("MISP URL:", misp_search_url)
     try:
         misp_api_response = requests.get(misp_search_url, headers=misp_apicall_headers, verify=False)
     except ConnectionError:
@@ -214,7 +214,7 @@ elif event_source == 'ossec':
 # Stormshield events.
 # => You need to add rules to the group "fw-pass-event"
 elif event_source == 'stormshield':
-    print("Source: Stormshield")
+    #print("Source: Stormshield")
     if event_type == 'fw-pass-event':
         try:
             wazuh_event_param = alert["data"]["dst"]
@@ -234,7 +234,7 @@ elif event_source == 'stormshield':
 
     misp_search_value = "value:"f"{wazuh_event_param}"
     misp_search_url = ''.join([misp_base_url, misp_search_value])
-    print("MISP URL:", misp_search_url)
+    #print("MISP URL:", misp_search_url)
 
     try:
         misp_api_response = requests.get(misp_search_url, headers=misp_apicall_headers, verify=False)
