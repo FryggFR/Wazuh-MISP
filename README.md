@@ -6,7 +6,7 @@ It sometimes generates errors on the MISP response and on some MISP requests.
 
 # How to install 🛠️
 1. Copy the script in **/var/ossec/integrations**
-2. Configure the script line 56 and 57 with your misp instance and api key:
+2. Configure the script line 60 and 61 with your misp instance and api key:
 ```
 misp_base_url = "https://YOUR-MISP-INSTANCE/attributes/restSearch/"
 misp_api_auth_key = "YOUR-API-KEY"
