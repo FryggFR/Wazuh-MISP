@@ -36,3 +36,4 @@ The script will send a request to the MISP API with the destination ip.
 # Know issues & Work in progress...
 
 1) The script sends a duplicate alert to the Stormshield alerts, generating 2 lines in the Wazuh dashboard.
+2) Sometimes, it send this error (*wazuh-integratord ERROR  While running custom-misp.py -> integrations. Output:*) in wazuh dashboard. But it still sends the request and still generates the alert in Wazuh.
